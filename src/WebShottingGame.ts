@@ -40,7 +40,7 @@ export class WebShottingGame extends LitElement {
   constructor() {
     super();
     this.ground.rotation.set(0.5 * Math.PI, 0, 0);
-    this.camera.position.set(0, 1, 0);
+    this.camera.position.set(0, 0.5, 0);
     this.scene.add(this.ground, this.control.getObject());
   }
 
@@ -76,8 +76,8 @@ export class WebShottingGame extends LitElement {
     this.direction.x = this.moves.right;
     this.direction.normalize();
 
-    if (this.moves.forward) this.velocity.z -= this.direction.z * 400 * delta;
-    if (this.moves.right) this.velocity.x -= this.direction.x * 400 * delta;
+    if (this.moves.forward) this.velocity.z -= this.direction.z * 40 * delta;
+    if (this.moves.right) this.velocity.x -= this.direction.x * 40 * delta;
 
     this.control.moveRight(-this.velocity.x * delta);
     this.control.moveForward(-this.velocity.z * delta);
