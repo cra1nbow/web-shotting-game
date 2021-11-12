@@ -18,10 +18,14 @@ export class WebShottingGame extends LitElement {
 
   ground = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 10),
-    new THREE.MeshBasicMaterial({
+    new THREE.MeshPhysicalMaterial({
       side: THREE.DoubleSide,
     })
   );
+
+  mainLight = new THREE.SpotLight(0xffffff, 8, 11);
+
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
 
   control = new PointerLockControls(this.camera, document.body);
 
@@ -41,7 +45,13 @@ export class WebShottingGame extends LitElement {
     super();
     this.ground.rotation.set(0.5 * Math.PI, 0, 0);
     this.camera.position.set(0, 0.5, 0);
-    this.scene.add(this.ground, this.control.getObject());
+    this.mainLight.position.set(0, 10, 0);
+    this.scene.add(
+      this.ground,
+      this.control.getObject(),
+      this.mainLight,
+      this.ambientLight
+    );
   }
 
   connectedCallback() {
